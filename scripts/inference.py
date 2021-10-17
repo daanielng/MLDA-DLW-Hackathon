@@ -28,6 +28,9 @@ EPOCHS = 1000
 MAX_SEQ_LENGTH = 25
 NUM_FEATURES = 2048
 
+# ENABLE CUDA
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = 0
 
 def prepare_single_video(frames):
     frames = frames[None, ...]
@@ -90,9 +93,10 @@ feature_extractor = build_feature_extractor()
 
 label_processor = tf.keras.layers.experimental.preprocessing.StringLookup(num_oov_indices=0, vocabulary=np.unique(['', 'Afraid', 'After', 'Afternoon', 'Again', 'Alawys', 'All', 'Always', 'Angry', 'Animal', 'Answer', 'Apple', 'Argue', 'Art', 'Ask', 'Aunt', 'Autumn', 'Awake', 'Baby', 'Back', 'Bad', 'Ball', 'Bear', 'Because', 'Best', 'Better', 'Bicycle', 'Big', 'Bird', 'Birth', 'Biscuit', 'Black', 'Blood', 'Blue', 'Boat', 'Body', 'Book', 'Both', 'Box', 'Boy', 'Bread', 'Breathe', 'Bring', 'Brother', 'Brown', 'Bug', 'Bus', 'But', 'Buy', 'Can', 'Cannot', 'Car', 'Carry', 'Cat', 'Chair', 'Child', 'Choose', 'Climb', 'Closet', 'Clothes', 'Cloud', 'Coat', 'Cochlear Implant', 'Cold', 'Colour', 'Computer', 'Cookie', 'Correct', 'Count', 'Crazy', 'Cup', 'Dance', 'Dark']))
 
-yolo_path = r"C:\TelAviv\D5"
+# DIRECTORIES
+yolo_path = r"D:\hack\YOLO" #path contains weights, cfg, names files
 
-sequence_model = tf.keras.models.load_model("D:\hack\sl_model.h5")
+sequence_model = tf.keras.models.load_model("D:\hack\sign_language_model.h5") #trained weights path
 
 # initialize a list of colors to represent each possible class label
 np.random.seed(42)
