@@ -10,6 +10,8 @@ import imageio
 import cv2
 import os
 
+#NOTE: script is completely from keras' website: https://keras.io/examples/vision/video_classification/
+
 
 IMG_SIZE = 224
 BATCH_SIZE = 64
